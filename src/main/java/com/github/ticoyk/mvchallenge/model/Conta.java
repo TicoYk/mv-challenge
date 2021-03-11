@@ -5,9 +5,12 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -20,9 +23,13 @@ public class Conta {
     @Column(nullable=false)
     private String nomeBanco;
     
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="conta", cascade = CascadeType.ALL)
     private List<Transacao> transacao;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="cliente_id", referencedColumnName="id", nullable = false)
+    private Cliente cliente;
+    
     public Conta(){}
 
     public Conta(String nomeBanco) {
@@ -51,6 +58,14 @@ public class Conta {
 
     public void setTransacao(List<Transacao> transacao) {
         this.transacao = transacao;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
     
 }

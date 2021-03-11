@@ -10,7 +10,11 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Transient;
+import javax.validation.constraints.Size;
 
 import com.github.ticoyk.mvchallenge.constants.TipoCliente;
 
@@ -23,19 +27,20 @@ public class Cliente {
     private Long id;
     
     @Column(nullable = false)
+	@Size(min=2, max=30)
     private String nome;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private TipoCliente tipoCliente;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="cliente", cascade = CascadeType.ALL)
     private List<Conta> contas;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="cliente",cascade = CascadeType.ALL)
     private List<Endereco> enderecos;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="cliente",cascade = CascadeType.ALL)
     private List<Telefone> telefones;
 
     public Cliente(){}
