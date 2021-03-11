@@ -40,4 +40,66 @@ public class Cliente {
 
     public Cliente(){}
 
+    public Cliente(String nome, TipoCliente tipoCliente) {
+        this.nome = nome;
+        this.tipoCliente = tipoCliente;
+    }
+
+    public Cliente(String nome, TipoCliente tipoCliente, List<Conta> contas, List<Endereco> enderecos,
+            List<Telefone> telefones) {
+        this.nome = nome;
+        this.tipoCliente = tipoCliente;
+        this.contas = contas;
+        this.enderecos = enderecos;
+        this.telefones = telefones;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public TipoCliente getTipoCliente() {
+        return tipoCliente;
+    }
+
+    public void setTipoCliente(TipoCliente tipoCliente) {
+        this.tipoCliente = tipoCliente;
+    }
+
+    public List<Conta> getContas() {
+        return contas;
+    }
+
+    public void setContas(List<Conta> contas) {
+        this.contas = contas;
+    }
+
+    public List<Endereco> getEnderecos() {
+        return enderecos;
+    }
+
+    public void setEnderecos(List<Endereco> enderecos) {
+        this.enderecos = enderecos;
+    }
+
+    public List<Telefone> getTelefones() {
+        return telefones;
+    }
+
+    public void setTelefones(List<Telefone> telefones) {
+        this.telefones = telefones;
+    }
+
 }

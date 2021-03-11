@@ -24,5 +24,33 @@ public class Conta {
     private List<Transacao> transacao;
 
     public Conta(){}
+
+    public Conta(String nomeBanco) {
+        this.nomeBanco = nomeBanco;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNomeBanco() {
+        return nomeBanco;
+    }
+
+    public void setNomeBanco(String nomeBanco) {
+        this.nomeBanco = nomeBanco;
+    }
+
+    public List<Transacao> getTransacao() {
+        return transacao;
+    }
+
+    public void setTransacao(List<Transacao> transacao) {
+        this.transacao = transacao;
+    }
     
 }

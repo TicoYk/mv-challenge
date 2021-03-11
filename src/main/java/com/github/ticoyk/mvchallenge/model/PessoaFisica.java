@@ -21,5 +21,34 @@ public class PessoaFisica {
     @OneToOne(cascade = CascadeType.ALL)
     private Cliente cliente;
 
-    PessoaFisica(){}
+    public PessoaFisica(){}
+
+    public PessoaFisica(String cpf, Cliente cliente) {
+        this.cpf = cpf;
+        this.cliente = cliente;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 }

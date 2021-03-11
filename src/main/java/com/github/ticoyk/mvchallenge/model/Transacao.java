@@ -1,5 +1,7 @@
 package com.github.ticoyk.mvchallenge.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -28,6 +30,44 @@ public class Transacao {
     
     @Temporal(TemporalType.TIMESTAMP)
     private java.util.Date createdDate;
-    
-    Transacao(){}
+
+    public Transacao(){}
+
+    public Transacao(TipoTransacao tipo, Double valor, Date createdDate) {
+        this.tipo = tipo;
+        this.valor = valor;
+        this.createdDate = createdDate;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public TipoTransacao getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoTransacao tipo) {
+        this.tipo = tipo;
+    }
+
+    public Double getValor() {
+        return valor;
+    }
+
+    public void setValor(Double valor) {
+        this.valor = valor;
+    }
+
+    public java.util.Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(java.util.Date createdDate) {
+        this.createdDate = createdDate;
+    }
 }

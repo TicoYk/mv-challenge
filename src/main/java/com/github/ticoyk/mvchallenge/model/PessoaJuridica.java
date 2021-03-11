@@ -21,5 +21,34 @@ public class PessoaJuridica {
     @OneToOne(cascade = CascadeType.ALL)
     private Cliente cliente;
     
-    PessoaJuridica(){}
+    public PessoaJuridica(){}
+
+    public PessoaJuridica(String cnpj, Cliente cliente) {
+        this.cnpj = cnpj;
+        this.cliente = cliente;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 }
