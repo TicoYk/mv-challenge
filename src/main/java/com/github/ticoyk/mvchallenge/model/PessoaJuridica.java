@@ -18,8 +18,7 @@ public class PessoaJuridica {
     @Column(nullable = false)
     private String cnpj;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @Column(nullable = false)
+    @OneToOne(optional = false, cascade = CascadeType.ALL)
     private Cliente cliente;
     
     public PessoaJuridica(){}
