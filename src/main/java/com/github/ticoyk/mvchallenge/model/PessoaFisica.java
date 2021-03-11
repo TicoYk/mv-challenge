@@ -19,6 +19,7 @@ public class PessoaFisica {
     private String cpf;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @Column(nullable = false)
     private Cliente cliente;
 
     public PessoaFisica(){}
