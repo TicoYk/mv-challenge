@@ -1,6 +1,10 @@
 package com.github.ticoyk.mvchallenge.repository;
 
-public class PessoaFisicaRepository {
+import com.github.ticoyk.mvchallenge.model.PessoaFisica;
+
+import org.springframework.data.repository.CrudRepository;
+
+public interface PessoaFisicaRepository extends CrudRepository<PessoaFisica, Long> {
 
     
 }
