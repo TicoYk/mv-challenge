@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head> 
+    <title>Cadastrar clientes</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <span><a th:href="@{/clientes}">Voltar para Clientes</a></span>
+	<h1>Formulário clientes</h1>
+    <div>
+        <span><input name="tipoCliente" onClick="mudarTipoCliente('pf')" checked type="radio" value="pf"/> Pessoa Física</span>
+        <span><input name="tipoCliente" onClick="mudarTipoCliente('pj')" type="radio" value="pj"/> Pessoa Jurídica</span>
+    </div>
+
+    <form id="formularioPF" action="#" th:action="@{/clientes/cadastrar/pessoa-fisica}" th:object="${pessoaFisica}" method="post">
+        <p>Nome: <input type="text" th:field="*{cliente.nome}" /></p>
+        <p>CPF: <input type="text" th:field="*{cpf}" /></p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+
+    <form id="formularioPJ" action="#" th:action="@{/clientes/cadastrar/pessoa-juridica}" th:object="${pessoaJuridica}" method="post">
+        <p>Nome: <input type="text" th:id="pj-nome" th:field="*{cliente.nome}" /></p>
+        <p>CNPJ: <input type="text" th:id="pj-cnpj" th:field="*{cnpj}" /></p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+
+    <script th:inline="javascript">
+        // Alterar a visibilidade do formulário
+        function mudarTipoCliente(tipoCliente){
+            if(tipoCliente === "pf"){
+                document.getElementById("formularioPF").style.display = "block";
+                document.getElementById("formularioPF").style.visibility = "visible";
+
+                document.getElementById("formularioPJ").style.display = "none";
+                document.getElementById("formularioPJ").style.visibility = "hidden";
+            }
+            if(tipoCliente === "pj"){
+                document.getElementById("formularioPF").style.display = "none";
+                document.getElementById("formularioPF").style.visibility = "hidden";
+                
+                document.getElementById("formularioPJ").style.display = "block";
+                document.getElementById("formularioPJ").style.visibility = "visible";
+            }
+        }
+        mudarTipoCliente('pf');
+    </script>
+</body>
+</html>
