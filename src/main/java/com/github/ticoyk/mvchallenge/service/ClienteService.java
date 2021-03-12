@@ -1,6 +1,8 @@
 package com.github.ticoyk.mvchallenge.service;
 
-public class ClienteService {
+public interface ClienteService<T> {
 
-    ClienteService(){}
+    T registrarNovoCliente(T cliente);
+    T atualizarCliente(T cliente);
+    
 }
