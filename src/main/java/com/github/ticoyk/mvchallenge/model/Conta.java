@@ -23,7 +23,7 @@ public class Conta {
     @Column(nullable=false)
     private String nomeBanco;
     
-    @OneToMany(mappedBy="conta", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="conta", cascade = CascadeType.PERSIST)
     private List<Transacao> transacao;
 
     @ManyToOne(fetch = FetchType.EAGER)
