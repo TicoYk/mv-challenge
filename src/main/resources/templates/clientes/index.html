@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head> 
+    <title>Clientes</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/css/meuTemplate.css}" rel="stylesheet" />
+    <style>
+        .container {
+            display: flex;
+        }
+        .lista-clientes {
+            padding: 20px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+	<h1 class="titulo">Clientes</h1>
+    <div>
+        <span><a th:href="@{/clientes/cadastrar}">Cadastrar Cliente</a></span>
+    </div>
+    <p class="sub-titulo"> Listagem </p>
+    <div class="container">
+        <div class="lista-clientes">
+            <p><b>Pessoa Física</b></p>
+            <table class="listagem">
+                <tr class="listagem">
+                    <th class="listagem">Nome</th>
+                    <th class="listagem">CPF</th>
+                </tr>
+                <th:block th:each="pf : ${listaPf}">
+                    <tr>
+                        <td th:text="${pf.cliente.nome}"></td>
+                        <td th:text="${pf.cpf}"></td>
+                        <td><a th:href="@{/clientes/pessoa-fisica/{id}(id=${pf.id})}">Detalhes</a></td>
+                    </tr>
+                </th:block>
+            </table>
+        </div>
+        <div class="lista-clientes">
+            <p><b>Pessoa Jurídica</b></p>
+            <table class="listagem">
+                <tr class="listagem">
+                    <th class="listagem">Nome</th>
+                    <th class="listagem">CNPJ</th>
+                </tr>
+                <th:block th:each="pj : ${listaPj}">
+                    <tr>
+                        <td th:text="${pj.cliente.nome}"></td>
+                        <td th:text="${pj.cnpj}"></td>
+                        <td><a th:href="@{/clientes/pessoa-juridica/{id}(id=${pj.id})}">Detalhes</a></td>
+                    </tr>
+                </th:block>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
