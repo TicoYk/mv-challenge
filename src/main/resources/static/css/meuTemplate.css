@@ -1,0 +1,14 @@
+.titulo{
+    font-size: 2em;
+}
+
+.sub-titulo{
+    text-align: center;
+    font-size:1.5em;
+}
+
+table.listagem, table.listagem * {
+    width: 100%;
+    border: 1px solid black;
+    padding: 5px;
+}
