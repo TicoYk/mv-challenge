@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head> 
+    <title>Clientes</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/css/meuTemplate.css}" rel="stylesheet" />
+</head>
+<body>
+    <span><a th:href="@{/clientes}">Voltar para Clientes</a></span>
+	<h1 class="titulo">Detalhes</h1>
+    <div>
+        <p>Nome: <span th:text="${cliente.nome}"></span></p>
+        <p>CNPJ: <span th:text="${cnpj}"></span></p>
+    </div>
+
+    <table class="listagem">
+        <tr>
+            <th>Telefone</th>
+        </tr>
+        <th:block th:each="telefone : ${telefones}">
+            <tr>
+                <td th:text="${telefone.numero}"></td>
+            </tr>
+        </th:block>
+    </table>
+
+    <table class="listagem">
+        <tr>
+            <th>Contas</th>
+        </tr>
+        <th:block th:each="conta: ${contas}">
+            <tr>
+                <td th:text="${conta.nomeBanco}"></td>
+            </tr>
+        </th:block>
+    </table>
+
+    <table class="listagem">
+        <tr>
+            <th>Endereço</th>
+        </tr>
+        <th:block th:each="endereco : ${enderecos}">
+            <tr>
+                <td th:text="${endereco.enderecoCompleto}"></td>
+            </tr>
+        </th:block>
+    </table>
+</body>
+</html>
