@@ -18,12 +18,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CargaDados {
+public class CargaDadosMock {
     
     private PessoaFisicaService pessoaFisicaService;
     private PessoaJuridicaService pessoaJuridicaService;
 
-    public CargaDados(
+    public CargaDadosMock(
         PessoaFisicaService pessoaFisicaService,
         PessoaJuridicaService pessoaJuridicaService
         ){
