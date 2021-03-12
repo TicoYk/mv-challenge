@@ -32,8 +32,9 @@ public class Conta {
     
     public Conta(){}
 
-    public Conta(String nomeBanco) {
+    public Conta(String nomeBanco, Cliente cliente) {
         this.nomeBanco = nomeBanco;
+        this.cliente = cliente;
     }
 
     public Long getId() {

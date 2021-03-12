@@ -28,9 +28,10 @@ public class Endereco {
     
     public Endereco(){}
 
-    public Endereco(String enderecoCompleto, String cep) {
+    public Endereco(String enderecoCompleto, String cep, Cliente cliente) {
         this.enderecoCompleto = enderecoCompleto;
         this.cep = cep;
+        this.cliente = cliente;
     }
 
     public Long getId() {

@@ -25,8 +25,9 @@ public class Telefone {
     
     public Telefone(){}
 
-    public Telefone(String numero) {
+    public Telefone(String numero, Cliente cliente) {
         this.numero = numero;
+        this.cliente = cliente;
     }
 
     public Long getId() {
