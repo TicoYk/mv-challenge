@@ -40,10 +40,11 @@ public class Transacao {
     
     public Transacao(){}
 
-    public Transacao(TipoTransacao tipo, Double valor, Date createdDate) {
+    public Transacao(TipoTransacao tipo, Double valor, Date createdDate, Conta conta) {
         this.tipo = tipo;
         this.valor = valor;
         this.createdDate = createdDate;
+        this.conta = conta;
     }
 
     public Long getId() {
