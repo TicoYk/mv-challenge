@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @Controller
 public class EnderecoController {
@@ -43,7 +44,61 @@ public class EnderecoController {
         @ModelAttribute Endereco endereco,
         Model model
         ){
-        Cliente cliente = this.clienteService.adicionarEndereco(clienteId, endereco);
+        Cliente cliente = this.enderecoService.cadastrarEndereco(clienteId, endereco);
+        
+        if(cliente.getTipoCliente().equals(TipoCliente.PF)){
+            return "redirect:/clientes/pessoa-fisica/" + especId;
+        }
+        if(cliente.getTipoCliente().equals(TipoCliente.PJ)){
+            return "redirect:/clientes/pessoa-juridica/" + especId;
+        }
+        return "redirect:/clientes";
+    }
+
+    @GetMapping(value = "/clientes/{clienteId}/{especId}/enderecos/{enderecoId}/atualizar")
+    public String formularioAtualizarClienteEndereco(
+        @PathVariable Long clienteId, 
+        @PathVariable Long especId,
+        @PathVariable Long enderecoId,
+        Model model
+        ){
+        
+        model.addAttribute("clienteId", clienteId);
+        model.addAttribute("especId", especId);
+        model.addAttribute("endereco", this.enderecoService.encontrarEnderecoPorId(enderecoId));
+
+        return "clientes/enderecos/atualizar";
+    }
+
+    @PostMapping(value = "/clientes/{clienteId}/{especId}/enderecos/{enderecoId}/atualizar")
+    public String atualizarClienteEndereco(
+        @PathVariable Long clienteId, 
+        @PathVariable Long especId,
+        @PathVariable Long enderecoId,
+        @ModelAttribute Endereco novaEndereco,
+        Model model
+        ){
+        Endereco endereco = this.enderecoService.atualizarEndereco(enderecoId, novaEndereco);
+        Cliente cliente = endereco.getCliente();
+
+        if(cliente.getTipoCliente().equals(TipoCliente.PF)){
+            return "redirect:/clientes/pessoa-fisica/" + especId;
+        }
+        if(cliente.getTipoCliente().equals(TipoCliente.PJ)){
+            return "redirect:/clientes/pessoa-juridica/" + especId;
+        }
+        return "redirect:/clientes";
+    }
+
+    @GetMapping(value = "/clientes/{clienteId}/{especId}/enderecos/{enderecoId}/deletar")
+    public String deletarClienteEndereco(
+        @PathVariable Long clienteId, 
+        @PathVariable Long especId,
+        @PathVariable Long enderecoId,
+        @ModelAttribute Endereco endereco,
+        Model model
+        ){
+        Cliente cliente = this.enderecoService.deletarEnderecoPorIdTrazerCliente(enderecoId);
         
         if(cliente.getTipoCliente().equals(TipoCliente.PF)){
             return "redirect:/clientes/pessoa-fisica/" + especId;
