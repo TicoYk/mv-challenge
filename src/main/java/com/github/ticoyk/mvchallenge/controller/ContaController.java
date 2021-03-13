@@ -12,16 +12,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @Controller
 public class ContaController {
         
     private ContaService contaService;
-    private ClienteService clienteService;
 
     public ContaController(ContaService contaService, ClienteService clienteService){
         this.contaService = contaService;
-        this.clienteService = clienteService;
     }
     // especID = Id da especialização PF ou PJ
     @GetMapping(value = "/clientes/{clienteId}/{especId}/contas/cadastrar")
@@ -44,7 +43,61 @@ public class ContaController {
         @ModelAttribute Conta conta,
         Model model
         ){
-        Cliente cliente = this.clienteService.adicionarConta(clienteId, conta);
+        Cliente cliente = this.contaService.cadastrarConta(clienteId, conta);
+        
+        if(cliente.getTipoCliente().equals(TipoCliente.PF)){
+            return "redirect:/clientes/pessoa-fisica/" + especId;
+        }
+        if(cliente.getTipoCliente().equals(TipoCliente.PJ)){
+            return "redirect:/clientes/pessoa-juridica/" + especId;
+        }
+        return "redirect:/clientes";
+    }
+
+    @GetMapping(value = "/clientes/{clienteId}/{especId}/contas/{contaId}/atualizar")
+    public String formularioClienteConta(
+        @PathVariable Long clienteId, 
+        @PathVariable Long especId,
+        @PathVariable Long contaId,
+        Model model
+        ){
+        
+        model.addAttribute("clienteId", clienteId);
+        model.addAttribute("especId", especId);
+        model.addAttribute("conta", this.contaService.encontrarContaPorId(contaId));
+
+        return "clientes/contas/atualizar";
+    }
+
+    @PostMapping(value = "/clientes/{clienteId}/{especId}/contas/{contaId}/atualizar")
+    public String atualizarClienteConta(
+        @PathVariable Long clienteId, 
+        @PathVariable Long especId,
+        @PathVariable Long contaId,
+        @ModelAttribute Conta novaConta,
+        Model model
+        ){
+        Conta conta = this.contaService.atualizarConta(contaId, novaConta);
+        Cliente cliente = conta.getCliente();
+
+        if(cliente.getTipoCliente().equals(TipoCliente.PF)){
+            return "redirect:/clientes/pessoa-fisica/" + especId;
+        }
+        if(cliente.getTipoCliente().equals(TipoCliente.PJ)){
+            return "redirect:/clientes/pessoa-juridica/" + especId;
+        }
+        return "redirect:/clientes";
+    }
+
+    @GetMapping(value = "/clientes/{clienteId}/{especId}/contas/{contaId}/deletar")
+    public String deletarClienteConta(
+        @PathVariable Long clienteId, 
+        @PathVariable Long especId,
+        @PathVariable Long contaId,
+        @ModelAttribute Conta conta,
+        Model model
+        ){
+        Cliente cliente = this.contaService.deletarContaPorIdTrazerCliente(contaId);
         
         if(cliente.getTipoCliente().equals(TipoCliente.PF)){
             return "redirect:/clientes/pessoa-fisica/" + especId;
