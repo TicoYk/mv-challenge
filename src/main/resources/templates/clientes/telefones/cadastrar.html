@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head> 
+    <title>Cadastrar Telefone</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <span><a href="javascript:history.back()"> Voltar para Página Anterior </a></span>
+    
+	<h1>Formulário Telefone</h1>
+    <form 
+        id="formularioPF" 
+        action="#" 
+        th:action="@{/clientes/{clienteId}/{especId}/telefones/cadastrar(clienteId=${clienteId}, especId=${especId})}" 
+        th:object="${telefone}" 
+        method="post">
+        <p>Telefone: <input type="text" th:field="*{numero}" /></p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+</body>
+</html>
