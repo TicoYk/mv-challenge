@@ -1,6 +1,6 @@
 package com.github.ticoyk.mvchallenge.model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,10 +12,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.github.ticoyk.mvchallenge.constants.TipoTransacao;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 public class Transacao {
@@ -31,19 +32,20 @@ public class Transacao {
     @Column(nullable = false)
     private Double valor;
     
-    @Temporal(TemporalType.TIMESTAMP)
-    private java.util.Date createdDate;
+    @CreationTimestamp
+    private LocalDateTime dataCriacao;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="conta_id", referencedColumnName="id", nullable = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "cliente"})
     private Conta conta;
     
     public Transacao(){}
 
-    public Transacao(TipoTransacao tipo, Double valor, Date createdDate, Conta conta) {
+    public Transacao(TipoTransacao tipo, Double valor, LocalDateTime dataCriacao, Conta conta) {
         this.tipo = tipo;
         this.valor = valor;
-        this.createdDate = createdDate;
+        this.dataCriacao = dataCriacao;
         this.conta = conta;
     }
 
@@ -71,12 +73,12 @@ public class Transacao {
         this.valor = valor;
     }
 
-    public java.util.Date getCreatedDate() {
-        return createdDate;
+    public LocalDateTime getDataCriacao() {
+        return dataCriacao;
     }
 
-    public void setCreatedDate(java.util.Date createdDate) {
-        this.createdDate = createdDate;
+    public void setCreatedDate(LocalDateTime dataCriacao) {
+        this.dataCriacao = dataCriacao;
     }
 
     public Conta getConta() {
