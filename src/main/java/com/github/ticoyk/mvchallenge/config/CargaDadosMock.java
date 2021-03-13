@@ -43,7 +43,7 @@ public class CargaDadosMock {
 
     private void criarClientes() {
         // PF
-        PessoaFisica pf = this.pessoaFisicaService.registrarNovoCliente(
+        PessoaFisica pf = this.pessoaFisicaService.registrarOuAtualizarCliente(
             new PessoaFisica("12345678901", new Cliente("Novo Cliente PF",TipoCliente.PF))
             );
         Cliente cliente = pf.getCliente();
@@ -57,11 +57,11 @@ public class CargaDadosMock {
         cliente.setTelefones(Arrays.asList(telefone));
 
         pf.setCliente(cliente);
-        this.pessoaFisicaService.atualizarCliente(pf);
+        this.pessoaFisicaService.registrarOuAtualizarCliente(pf);
         
         // PJ 
 
-        PessoaJuridica pj = this.pessoaJuridicaService.registrarNovoCliente(
+        PessoaJuridica pj = this.pessoaJuridicaService.registrarOuAtualizarCliente(
             new PessoaJuridica("12345678901234", new Cliente("Novo Cliente PJ", TipoCliente.PJ))
             );
         cliente = pj.getCliente();
@@ -75,7 +75,7 @@ public class CargaDadosMock {
         cliente.setTelefones(Arrays.asList(telefone));
 
         pj.setCliente(cliente);
-        this.pessoaJuridicaService.registrarNovoCliente(pj);
+        this.pessoaJuridicaService.registrarOuAtualizarCliente(pj);
 
     }
 
