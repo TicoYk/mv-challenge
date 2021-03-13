@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Conta {
     
@@ -24,10 +26,12 @@ public class Conta {
     private String nomeBanco;
     
     @OneToMany(mappedBy="conta", cascade = CascadeType.PERSIST)
-    private List<Transacao> transacao;
+    @JsonIgnoreProperties({"conta"})
+    private List<Transacao> transacoes;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="cliente_id", referencedColumnName="id", nullable = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "contas", "enderecos", "telefones"})
     private Cliente cliente;
     
     public Conta(){}
@@ -57,12 +61,12 @@ public class Conta {
         this.nomeBanco = nomeBanco;
     }
 
-    public List<Transacao> getTransacao() {
-        return transacao;
+    public List<Transacao> getTransacoes() {
+        return transacoes;
     }
 
-    public void setTransacao(List<Transacao> transacao) {
-        this.transacao = transacao;
+    public void setTransacoes(List<Transacao> transacoes) {
+        this.transacoes = transacoes;
     }
 
     public Cliente getCliente() {
