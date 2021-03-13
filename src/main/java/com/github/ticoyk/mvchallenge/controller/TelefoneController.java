@@ -3,7 +3,6 @@ package com.github.ticoyk.mvchallenge.controller;
 import com.github.ticoyk.mvchallenge.constants.TipoCliente;
 import com.github.ticoyk.mvchallenge.model.Cliente;
 import com.github.ticoyk.mvchallenge.model.Telefone;
-import com.github.ticoyk.mvchallenge.service.ClienteService;
 import com.github.ticoyk.mvchallenge.service.TelefoneService;
 
 import org.springframework.stereotype.Controller;
@@ -12,17 +11,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 
 @Controller
 public class TelefoneController {
     
     private TelefoneService telefoneService;
-    private ClienteService clienteService;
 
-    public TelefoneController(TelefoneService telefoneService, ClienteService clienteService){
+    public TelefoneController(TelefoneService telefoneService){
         this.telefoneService = telefoneService;
-        this.clienteService = clienteService;
     }
     // especID = Id da especialização PF ou PJ
     @GetMapping(value = "/clientes/{clienteId}/{especId}/telefones/cadastrar")

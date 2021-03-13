@@ -1,13 +1,7 @@
 package com.github.ticoyk.mvchallenge.service;
 
-import java.util.List;
-
 import com.github.ticoyk.mvchallenge.model.Cliente;
-import com.github.ticoyk.mvchallenge.model.Conta;
-import com.github.ticoyk.mvchallenge.model.Endereco;
-import com.github.ticoyk.mvchallenge.model.Telefone;
 import com.github.ticoyk.mvchallenge.repository.ClienteRepository;
-import com.github.ticoyk.mvchallenge.repository.TelefoneRepository;
 
 import org.springframework.stereotype.Service;
 

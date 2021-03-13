@@ -1,7 +1,5 @@
 package com.github.ticoyk.mvchallenge.service;
 
-import java.util.List;
-
 import com.github.ticoyk.mvchallenge.model.Cliente;
 import com.github.ticoyk.mvchallenge.model.Conta;
 import com.github.ticoyk.mvchallenge.repository.ClienteRepository;
