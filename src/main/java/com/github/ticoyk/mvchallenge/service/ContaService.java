@@ -1,5 +1,8 @@
 package com.github.ticoyk.mvchallenge.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.github.ticoyk.mvchallenge.model.Cliente;
 import com.github.ticoyk.mvchallenge.model.Conta;
 import com.github.ticoyk.mvchallenge.repository.ClienteRepository;
@@ -21,6 +24,14 @@ public class ContaService {
         this.clienteRepository = clienteRepository;
     }
 
+    public List<Conta> encontrarTodasContas(){
+        List<Conta> contas = new ArrayList<Conta>();
+        this.contaRepository.findAll().iterator().forEachRemaining( conta -> {
+            contas.add(conta);
+        });
+        return contas;
+    }
+    
     public Conta encontrarContaPorId(Long id){
         return this.contaRepository.findById(id).get();
     }
