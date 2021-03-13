@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="https://www.thymeleaf.org">
 <head> 
-    <title>Cadastrar Telefone</title>
+    <title>Alterar Telefone</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
@@ -11,9 +11,11 @@
     <form 
         id="formularioPF" 
         action="#" 
-        th:action="@{/clientes/{clienteId}/{especId}/telefones/cadastrar(clienteId=${clienteId}, especId=${especId})}" 
+        th:action="@{
+            /clientes/{clienteId}/{especId}/telefones/{telefoneId}/atualizar
+            (clienteId=${clienteId}, especId=${especId}, telefoneId=${telefone.id})}" 
         th:object="${telefone}" 
-        th:method="post"
+        method="post"
         >
         <p>Telefone: <input type="text" th:field="*{numero}" /></p>
         <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>

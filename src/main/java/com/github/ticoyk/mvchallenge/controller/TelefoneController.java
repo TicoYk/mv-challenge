@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @Controller
 public class TelefoneController {
@@ -44,7 +45,62 @@ public class TelefoneController {
         @ModelAttribute Telefone telefone,
         Model model
         ){
-        Cliente cliente = this.clienteService.adicionarTelefone(clienteId, telefone);
+        Cliente cliente = this.telefoneService.cadastrarTelefone(clienteId, telefone);
+
+        if(cliente.getTipoCliente().equals(TipoCliente.PF)){
+            return "redirect:/clientes/pessoa-fisica/" + especId;
+        }
+        if(cliente.getTipoCliente().equals(TipoCliente.PJ)){
+            return "redirect:/clientes/pessoa-juridica/" + especId;
+        }
+        return "redirect:/clientes";
+    }
+
+    @GetMapping(value = "/clientes/{clienteId}/{especId}/telefones/{telefoneId}/atualizar")
+    public String formularioClienteTelefone(
+        @PathVariable Long clienteId, 
+        @PathVariable Long especId,
+        @PathVariable Long telefoneId,
+        Model model
+        ){
+        
+        model.addAttribute("clienteId", clienteId);
+        model.addAttribute("especId", especId);
+        model.addAttribute("telefone", this.telefoneService.encontrarTelefonePorId(telefoneId));
+
+        return "clientes/telefones/atualizar";
+    }
+
+    @PostMapping(value = "/clientes/{clienteId}/{especId}/telefones/{telefoneId}/atualizar")
+    public String atualizarClienteTelefone(
+        @PathVariable Long clienteId, 
+        @PathVariable Long especId,
+        @PathVariable Long telefoneId,
+        @ModelAttribute Telefone novaTelefone,
+        Model model
+        ){
+        Telefone telefone = this.telefoneService.atualizarTelefone(telefoneId, novaTelefone);
+        Cliente cliente = telefone.getCliente();
+
+        if(cliente.getTipoCliente().equals(TipoCliente.PF)){
+            return "redirect:/clientes/pessoa-fisica/" + especId;
+        }
+        if(cliente.getTipoCliente().equals(TipoCliente.PJ)){
+            return "redirect:/clientes/pessoa-juridica/" + especId;
+        }
+        return "redirect:/clientes";
+    }
+
+    @GetMapping(value = "/clientes/{clienteId}/{especId}/telefones/{telefoneId}/deletar")
+    public String deletarClienteTelefone(
+        @PathVariable Long clienteId, 
+        @PathVariable Long especId,
+        @PathVariable Long telefoneId,
+        @ModelAttribute Telefone telefone,
+        Model model
+        ){
+        Cliente cliente = this.telefoneService.deletarTelefonePorIdTrazerCliente(telefoneId);
+        
         if(cliente.getTipoCliente().equals(TipoCliente.PF)){
             return "redirect:/clientes/pessoa-fisica/" + especId;
         }
