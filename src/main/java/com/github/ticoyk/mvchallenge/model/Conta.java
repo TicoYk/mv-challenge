@@ -26,12 +26,16 @@ public class Conta {
     @OneToMany(mappedBy="conta", cascade = CascadeType.PERSIST)
     private List<Transacao> transacao;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="cliente_id", referencedColumnName="id", nullable = false)
     private Cliente cliente;
     
     public Conta(){}
 
+    public Conta(String nomeBanco) {
+        this.nomeBanco = nomeBanco;
+    }
+    
     public Conta(String nomeBanco, Cliente cliente) {
         this.nomeBanco = nomeBanco;
         this.cliente = cliente;

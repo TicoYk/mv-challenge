@@ -19,7 +19,7 @@ public class Telefone {
     @Column(nullable = false)
     private String numero;
     
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="cliente_id", referencedColumnName="id", nullable = false)
     private Cliente cliente;
     
