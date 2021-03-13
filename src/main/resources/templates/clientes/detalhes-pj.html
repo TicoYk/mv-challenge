@@ -13,6 +13,9 @@
         <p>CNPJ: <span th:text="${cnpj}"></span></p>
     </div>
 
+    <div>
+        <span><a th:href="@{/clientes/{clienteId}/{especId}/telefones/cadastrar(clienteId=${cliente.id}, especId=${especId})}">Cadastrar Telefone</a></span>
+    </div>
     <table class="listagem">
         <tr>
             <th>Telefone</th>
@@ -24,6 +27,9 @@
         </th:block>
     </table>
 
+    <div>
+        <span><a th:href="@{/clientes/{clienteId}/{especId}/contas/cadastrar(clienteId=${cliente.id}, especId=${especId})}">Cadastrar Conta</a></span>
+    </div>
     <table class="listagem">
         <tr>
             <th>Contas</th>
@@ -35,6 +41,9 @@
         </th:block>
     </table>
 
+    <div>
+        <span><a th:href="@{/clientes/{clienteId}/{especId}/enderecos/cadastrar(clienteId=${cliente.id}, especId=${especId})}">Cadastrar Endereço</a></span>
+    </div>
     <table class="listagem">
         <tr>
             <th>Endereço</th>

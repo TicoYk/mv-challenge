@@ -35,28 +35,30 @@ public class ClienteController {
         return "clientes/index";
     }
 
-    @GetMapping(value = "/clientes/pessoa-fisica/{id}")
-    public String buscarPorClientePF(@PathVariable Long id, Model model){
-        PessoaFisica pf = this.pessoaFisicaService.encontrarClientePorId(id);
+    @GetMapping(value = "/clientes/pessoa-fisica/{pfId}")
+    public String buscarPorClientePF(@PathVariable Long pfId, Model model){
+        PessoaFisica pf = this.pessoaFisicaService.encontrarClientePorId(pfId);
         Cliente cliente = pf.getCliente();
         model.addAttribute("cliente", cliente);
         model.addAttribute("telefones", cliente.getTelefones());
         model.addAttribute("enderecos", cliente.getEnderecos());
         model.addAttribute("contas", cliente.getContas());
 
+        model.addAttribute("especId", pfId);
         model.addAttribute("cpf", pf.getCpf());
         return "clientes/detalhes-pf";
     }
 
-    @GetMapping(value = "/clientes/pessoa-juridica/{id}")
-    public String buscarPorClientePJ(@PathVariable Long id, Model model){
-        PessoaJuridica pj = this.pessoaJuridicaService.encontrarClientePorId(id);
+    @GetMapping(value = "/clientes/pessoa-juridica/{pjId}")
+    public String buscarPorClientePJ(@PathVariable Long pjId, Model model){
+        PessoaJuridica pj = this.pessoaJuridicaService.encontrarClientePorId(pjId);
         Cliente cliente = pj.getCliente();
         model.addAttribute("cliente", cliente);
         model.addAttribute("telefones", cliente.getTelefones());
         model.addAttribute("enderecos", cliente.getEnderecos());
         model.addAttribute("contas", cliente.getContas());
-
+        
+        model.addAttribute("especId", pjId);
         model.addAttribute("cnpj", pj.getCnpj()); 
         return "clientes/detalhes-pj";
     }
@@ -73,7 +75,7 @@ public class ClienteController {
         Cliente cliente = pessoaFisica.getCliente();
         cliente.setTipoCliente(TipoCliente.PF);
         pessoaFisica.setCliente(cliente);
-        this.pessoaFisicaService.registrarNovoCliente(pessoaFisica);
+        this.pessoaFisicaService.registrarOuAtualizarCliente(pessoaFisica);
         return "redirect:/clientes/cadastrar";
     }
 
@@ -82,7 +84,55 @@ public class ClienteController {
         Cliente cliente = pessoaJuridica.getCliente();
         cliente.setTipoCliente(TipoCliente.PF);
         pessoaJuridica.setCliente(cliente);
-        this.pessoaJuridicaService.registrarNovoCliente(pessoaJuridica);
+        this.pessoaJuridicaService.registrarOuAtualizarCliente(pessoaJuridica);
         return "redirect:/clientes/cadastrar";
+    }
+
+    @GetMapping(value = "/clientes/atualizar/pessoa-fisica/{pfId}")
+    public String alterarPessoaFisica(@PathVariable Long pfId, Model model){
+        model.addAttribute("pessoaFisica", this.pessoaFisicaService.encontrarClientePorId(pfId));
+        return "/clientes/atualizar-pf";
+    }
+
+    @PostMapping(value = "/clientes/atualizar/pessoa-fisica/{pfId}")
+    public String atualizarPessoaFisica(
+        @PathVariable Long pfId,
+        @ModelAttribute PessoaFisica pessoaFisica,
+        Model model
+        ){
+        this.pessoaFisicaService.atualizarCliente(pfId, pessoaFisica);
+        return "redirect:/clientes";
+    }
+
+    @GetMapping(value = "/clientes/atualizar/pessoa-juridica/{pfId}")
+    public String alterarPessoaJuridica(@PathVariable Long pfId, Model model){
+        model.addAttribute("pessoaJuridica", this.pessoaJuridicaService.encontrarClientePorId(pfId));
+        return "/clientes/atualizar-pj";
+    }
+
+    @PostMapping(value = "/clientes/atualizar/pessoa-juridica/{pjId}")
+    public String atualizarPessoaJuridica(
+        @PathVariable Long pjId,
+        @ModelAttribute PessoaJuridica pessoaJuridica,
+        Model model
+        ){
+        this.pessoaJuridicaService.atualizarCliente(pjId, pessoaJuridica);
+        return "redirect:/clientes";
+    }
+
+    @GetMapping(value = "/clientes/deletar/pessoa-fisica/{pfId}")
+    public String deletarPessoaFisica(
+        @PathVariable Long pfId
+        ){
+        this.pessoaFisicaService.deletarClientePorId(pfId);
+        return "redirect:/clientes";
+    }
+
+    @GetMapping(value = "/clientes/deletar/pessoa-juridica/{pjId}")
+    public String deletarPessoaJuridica(
+        @PathVariable Long pjId
+        ){
+        this.pessoaJuridicaService.deletarClientePorId(pjId);
+        return "redirect:/clientes";
     }
 }

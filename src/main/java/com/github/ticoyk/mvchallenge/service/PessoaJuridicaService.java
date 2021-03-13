@@ -3,13 +3,14 @@ package com.github.ticoyk.mvchallenge.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.ticoyk.mvchallenge.model.Cliente;
 import com.github.ticoyk.mvchallenge.model.PessoaJuridica;
 import com.github.ticoyk.mvchallenge.repository.PessoaJuridicaRepository;
 
 import org.springframework.stereotype.Service;
 
 @Service
-public class PessoaJuridicaService implements ClienteService<PessoaJuridica>{
+public class PessoaJuridicaService implements ClienteCrudService<PessoaJuridica>{
 
     private PessoaJuridicaRepository pessoaJuridicaRepository;
 
@@ -18,13 +19,18 @@ public class PessoaJuridicaService implements ClienteService<PessoaJuridica>{
     }
 
     @Override
-    public PessoaJuridica registrarNovoCliente(PessoaJuridica pessoaJuridica){
+    public PessoaJuridica registrarOuAtualizarCliente(PessoaJuridica pessoaJuridica){
         return this.pessoaJuridicaRepository.save(pessoaJuridica);
     }
 
+    // Irá Atualizar apenas o Nome e CNPJ
     @Override
-    public PessoaJuridica atualizarCliente(PessoaJuridica pessoaJuridica){
-        return this.pessoaJuridicaRepository.save(pessoaJuridica);
+    public PessoaJuridica atualizarCliente(Long id, PessoaJuridica novoPJ){
+        PessoaJuridica pj = this.encontrarClientePorId(id); 
+        Cliente cliente = pj.getCliente();
+        cliente.setNome(novoPJ.getCliente().getNome());
+        pj.setCnpj(novoPJ.getCnpj());
+        return this.pessoaJuridicaRepository.save(pj);
     }
 
     @Override
@@ -41,4 +47,8 @@ public class PessoaJuridicaService implements ClienteService<PessoaJuridica>{
         return this.pessoaJuridicaRepository.findById(id).get();
     }
 
+    @Override
+    public void deletarClientePorId(Long id) {
+        this.pessoaJuridicaRepository.delete(this.encontrarClientePorId(id));
+    }
 }

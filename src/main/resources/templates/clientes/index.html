@@ -24,15 +24,17 @@
         <div class="lista-clientes">
             <p><b>Pessoa Física</b></p>
             <table class="listagem">
-                <tr class="listagem">
-                    <th class="listagem">Nome</th>
-                    <th class="listagem">CPF</th>
+                <tr>
+                    <th>Nome</th>
+                    <th>CPF</th>
                 </tr>
                 <th:block th:each="pf : ${listaPf}">
                     <tr>
                         <td th:text="${pf.cliente.nome}"></td>
                         <td th:text="${pf.cpf}"></td>
                         <td><a th:href="@{/clientes/pessoa-fisica/{id}(id=${pf.id})}">Detalhes</a></td>
+                        <td><a th:href="@{/clientes/atualizar/pessoa-fisica/{id}(id=${pf.id})}">Atualizar</a></td>
+                        <td><a th:href="@{/clientes/deletar/pessoa-fisica/{id}(id=${pf.id})}">Deletar</a></td>
                     </tr>
                 </th:block>
             </table>
@@ -40,15 +42,17 @@
         <div class="lista-clientes">
             <p><b>Pessoa Jurídica</b></p>
             <table class="listagem">
-                <tr class="listagem">
-                    <th class="listagem">Nome</th>
-                    <th class="listagem">CNPJ</th>
+                <tr>
+                    <th>Nome</th>
+                    <th>CNPJ</th>
                 </tr>
                 <th:block th:each="pj : ${listaPj}">
                     <tr>
                         <td th:text="${pj.cliente.nome}"></td>
                         <td th:text="${pj.cnpj}"></td>
                         <td><a th:href="@{/clientes/pessoa-juridica/{id}(id=${pj.id})}">Detalhes</a></td>
+                        <td><a th:href="@{/clientes/atualizar/pessoa-juridica/{id}(id=${pj.id})}">Atualizar</a></td>
+                        <td><a th:href="@{/clientes/deletar/pessoa-juridica/{id}(id=${pj.id})}">Deletar</a></td>
                     </tr>
                 </th:block>
             </table>
