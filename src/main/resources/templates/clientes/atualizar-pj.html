@@ -8,7 +8,7 @@
     <span><a th:href="@{/clientes}">Voltar para Clientes</a></span>
 	<h1 th:text="Atualizar + ' ' +${pessoaJuridica.cliente.nome}"></h1>
 
-    <form action="#" th:action="@{/clientes/atualizar/pessoa-juridica/{id}(id=${pessoaJuridica.id})}" th:object="${pessoaJuridica}" method="post">
+    <form action="#" th:action="@{/clientes/pessoa-juridica/{id}/atualizar(id=${pessoaJuridica.id})}" th:object="${pessoaJuridica}" method="post">
         <p>Nome: <input type="text" th:field="*{cliente.nome}" /></p>
         <p>CNPJ: <input type="text" th:field="*{cnpj}" /></p>
         <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
