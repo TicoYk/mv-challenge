@@ -34,7 +34,7 @@ public class Transacao {
     @Temporal(TemporalType.TIMESTAMP)
     private java.util.Date createdDate;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="conta_id", referencedColumnName="id", nullable = false)
     private Conta conta;
     
