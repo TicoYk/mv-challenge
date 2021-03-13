@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @Controller
 public class ClienteController {
@@ -88,13 +89,13 @@ public class ClienteController {
         return "redirect:/clientes/cadastrar";
     }
 
-    @GetMapping(value = "/clientes/atualizar/pessoa-fisica/{pfId}")
+    @GetMapping(value = "/clientes/pessoa-fisica/{pfId}/atualizar")
     public String alterarPessoaFisica(@PathVariable Long pfId, Model model){
         model.addAttribute("pessoaFisica", this.pessoaFisicaService.encontrarClientePorId(pfId));
         return "/clientes/atualizar-pf";
     }
 
-    @PostMapping(value = "/clientes/atualizar/pessoa-fisica/{pfId}")
+    @PostMapping(value = "/clientes/pessoa-fisica/{pfId}/atualizar")
     public String atualizarPessoaFisica(
         @PathVariable Long pfId,
         @ModelAttribute PessoaFisica pessoaFisica,
@@ -104,13 +105,13 @@ public class ClienteController {
         return "redirect:/clientes";
     }
 
-    @GetMapping(value = "/clientes/atualizar/pessoa-juridica/{pfId}")
+    @GetMapping(value = "/clientes/pessoa-juridica/{pfId}/atualizar")
     public String alterarPessoaJuridica(@PathVariable Long pfId, Model model){
         model.addAttribute("pessoaJuridica", this.pessoaJuridicaService.encontrarClientePorId(pfId));
         return "/clientes/atualizar-pj";
     }
 
-    @PostMapping(value = "/clientes/atualizar/pessoa-juridica/{pjId}")
+    @PostMapping(value = "/clientes/pessoa-juridica/{pjId}/atualizar")
     public String atualizarPessoaJuridica(
         @PathVariable Long pjId,
         @ModelAttribute PessoaJuridica pessoaJuridica,
@@ -120,7 +121,7 @@ public class ClienteController {
         return "redirect:/clientes";
     }
 
-    @GetMapping(value = "/clientes/deletar/pessoa-fisica/{pfId}")
+    @GetMapping(value = "/clientes/pessoa-fisica/{pfId}/deletar")
     public String deletarPessoaFisica(
         @PathVariable Long pfId
         ){
@@ -128,7 +129,7 @@ public class ClienteController {
         return "redirect:/clientes";
     }
 
-    @GetMapping(value = "/clientes/deletar/pessoa-juridica/{pjId}")
+    @GetMapping(value = "/clientes/pessoa-juridica/{pjId}/deletar")
     public String deletarPessoaJuridica(
         @PathVariable Long pjId
         ){

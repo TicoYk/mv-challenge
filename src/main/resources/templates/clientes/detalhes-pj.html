@@ -14,7 +14,10 @@
     </div>
 
     <div>
-        <span><a th:href="@{/clientes/{clienteId}/{especId}/telefones/cadastrar(clienteId=${cliente.id}, especId=${especId})}">Cadastrar Telefone</a></span>
+        <span><a th:href="@{
+            /clientes/{clienteId}/{especId}/telefones/cadastrar
+            (clienteId=${cliente.id}, especId=${especId})}
+            ">Cadastrar Telefone</a></span>
     </div>
     <table class="listagem">
         <tr>
@@ -23,12 +26,31 @@
         <th:block th:each="telefone : ${telefones}">
             <tr>
                 <td th:text="${telefone.numero}"></td>
+                <td>
+                    <a th:href="@{
+                        /clientes/{clienteId}/{especId}/telefones/{telefoneId}/atualizar
+                        (clienteId=${cliente.id}, especId=${especId}, telefoneId=${telefone.id})
+                    }">Atualizar
+                    </a>
+                </td>
+                <td>
+                    <a th:href="@{
+                        /clientes/{clienteId}/{especId}/telefones/{telefoneId}/deletar/
+                        (clienteId=${cliente.id}, especId=${especId}, telefoneId=${telefone.id})
+                    }">Deletar
+                    </a>
+                </td>
             </tr>
         </th:block>
     </table>
 
     <div>
-        <span><a th:href="@{/clientes/{clienteId}/{especId}/contas/cadastrar(clienteId=${cliente.id}, especId=${especId})}">Cadastrar Conta</a></span>
+        <span><a th:href="@{
+            /clientes/{clienteId}/{especId}/contas/cadastrar
+            (clienteId=${cliente.id}, especId=${especId})
+            }">Cadastrar Conta
+            </a>
+        </span>
     </div>
     <table class="listagem">
         <tr>
@@ -37,12 +59,29 @@
         <th:block th:each="conta: ${contas}">
             <tr>
                 <td th:text="${conta.nomeBanco}"></td>
+                <td>
+                    <a th:href="@{
+                        /clientes/{clienteId}/{especId}/contas/{contaId}/atualizar
+                        (clienteId=${cliente.id}, especId=${especId}, contaId=${conta.id})
+                    }">Atualizar
+                    </a>
+                </td>
+                <td>
+                    <a th:href="@{
+                        /clientes/{clienteId}/{especId}/contas/{contaId}/deletar
+                        (clienteId=${cliente.id}, especId=${especId}, contaId=${conta.id})
+                    }">Deletar
+                    </a>
+                </td>
             </tr>
         </th:block>
     </table>
 
     <div>
-        <span><a th:href="@{/clientes/{clienteId}/{especId}/enderecos/cadastrar(clienteId=${cliente.id}, especId=${especId})}">Cadastrar Endereço</a></span>
+        <span><a th:href="@{
+            /clientes/{clienteId}/{especId}/enderecos/cadastrar
+            (clienteId=${cliente.id}, especId=${especId})}
+            ">Cadastrar Endereço</a></span>
     </div>
     <table class="listagem">
         <tr>
@@ -51,7 +90,22 @@
         <th:block th:each="endereco : ${enderecos}">
             <tr>
                 <td th:text="${endereco.enderecoCompleto}"></td>
+                <td>
+                    <a th:href="@{
+                        /clientes/{clienteId}/{especId}/enderecos/{enderecoId}/atualizar
+                        (clienteId=${cliente.id}, especId=${especId}, enderecoId=${endereco.id})
+                    }">Atualizar
+                    </a>
+                </td>
+                <td>
+                    <a th:href="@{
+                        /clientes/{clienteId}/{especId}/enderecos/{enderecoId}/deletar
+                        (clienteId=${cliente.id}, especId=${especId}, enderecoId=${endereco.id})
+                    }">Deletar
+                    </a>
+                </td>
             </tr>
+            
         </th:block>
     </table>
 </body>
