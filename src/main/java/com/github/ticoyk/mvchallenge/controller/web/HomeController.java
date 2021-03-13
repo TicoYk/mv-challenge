@@ -1,4 +1,4 @@
-package com.github.ticoyk.mvchallenge.controller;
+package com.github.ticoyk.mvchallenge.controller.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

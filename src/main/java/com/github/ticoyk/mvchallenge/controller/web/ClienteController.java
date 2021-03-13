@@ -1,4 +1,4 @@
-package com.github.ticoyk.mvchallenge.controller;
+package com.github.ticoyk.mvchallenge.controller.web;
 
 import com.github.ticoyk.mvchallenge.constants.TipoCliente;
 import com.github.ticoyk.mvchallenge.model.Cliente;

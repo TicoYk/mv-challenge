@@ -1,9 +1,9 @@
-package com.github.ticoyk.mvchallenge.controller;
+package com.github.ticoyk.mvchallenge.controller.web;
 
 import com.github.ticoyk.mvchallenge.constants.TipoCliente;
 import com.github.ticoyk.mvchallenge.model.Cliente;
-import com.github.ticoyk.mvchallenge.model.Endereco;
-import com.github.ticoyk.mvchallenge.service.EnderecoService;
+import com.github.ticoyk.mvchallenge.model.Telefone;
+import com.github.ticoyk.mvchallenge.service.TelefoneService;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,69 +13,35 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class EnderecoController {
-    private EnderecoService enderecoService;
+public class TelefoneController {
+    
+    private TelefoneService telefoneService;
 
-    public EnderecoController(EnderecoService enderecoService){
-        this.enderecoService = enderecoService;
+    public TelefoneController(TelefoneService telefoneService){
+        this.telefoneService = telefoneService;
     }
     // especID = Id da especialização PF ou PJ
-    @GetMapping(value = "/clientes/{clienteId}/{especId}/enderecos/cadastrar")
-    public String formularioClienteEndereco(
+    @GetMapping(value = "/clientes/{clienteId}/{especId}/telefones/cadastrar")
+    public String formularioClienteTelefone(
         @PathVariable Long clienteId, 
         @PathVariable Long especId,
         Model model
         ){
         model.addAttribute("clienteId", clienteId);
         model.addAttribute("especId", especId);
-        model.addAttribute("endereco", new Endereco());
+        model.addAttribute("telefone", new Telefone());
 
-        return "clientes/enderecos/cadastrar";
+        return "clientes/telefones/cadastrar";
     }
 
-    @PostMapping(value = "/clientes/{clienteId}/{especId}/enderecos/cadastrar")
-    public String registrarClienteEndereco(
+    @PostMapping(value = "/clientes/{clienteId}/{especId}/telefones/cadastrar")
+    public String registrarClienteTelefone(
         @PathVariable Long clienteId, 
         @PathVariable Long especId,
-        @ModelAttribute Endereco endereco,
+        @ModelAttribute Telefone telefone,
         Model model
         ){
-        Cliente cliente = this.enderecoService.cadastrarEndereco(clienteId, endereco);
-        
-        if(cliente.getTipoCliente().equals(TipoCliente.PF)){
-            return "redirect:/clientes/pessoa-fisica/" + especId;
-        }
-        if(cliente.getTipoCliente().equals(TipoCliente.PJ)){
-            return "redirect:/clientes/pessoa-juridica/" + especId;
-        }
-        return "redirect:/clientes";
-    }
-
-    @GetMapping(value = "/clientes/{clienteId}/{especId}/enderecos/{enderecoId}/atualizar")
-    public String formularioAtualizarClienteEndereco(
-        @PathVariable Long clienteId, 
-        @PathVariable Long especId,
-        @PathVariable Long enderecoId,
-        Model model
-        ){
-        
-        model.addAttribute("clienteId", clienteId);
-        model.addAttribute("especId", especId);
-        model.addAttribute("endereco", this.enderecoService.encontrarEnderecoPorId(enderecoId));
-
-        return "clientes/enderecos/atualizar";
-    }
-
-    @PostMapping(value = "/clientes/{clienteId}/{especId}/enderecos/{enderecoId}/atualizar")
-    public String atualizarClienteEndereco(
-        @PathVariable Long clienteId, 
-        @PathVariable Long especId,
-        @PathVariable Long enderecoId,
-        @ModelAttribute Endereco novaEndereco,
-        Model model
-        ){
-        Endereco endereco = this.enderecoService.atualizarEndereco(enderecoId, novaEndereco);
-        Cliente cliente = endereco.getCliente();
+        Cliente cliente = this.telefoneService.cadastrarTelefone(clienteId, telefone);
 
         if(cliente.getTipoCliente().equals(TipoCliente.PF)){
             return "redirect:/clientes/pessoa-fisica/" + especId;
@@ -86,15 +52,50 @@ public class EnderecoController {
         return "redirect:/clientes";
     }
 
-    @GetMapping(value = "/clientes/{clienteId}/{especId}/enderecos/{enderecoId}/deletar")
-    public String deletarClienteEndereco(
+    @GetMapping(value = "/clientes/{clienteId}/{especId}/telefones/{telefoneId}/atualizar")
+    public String formularioClienteTelefone(
         @PathVariable Long clienteId, 
         @PathVariable Long especId,
-        @PathVariable Long enderecoId,
-        @ModelAttribute Endereco endereco,
+        @PathVariable Long telefoneId,
         Model model
         ){
-        Cliente cliente = this.enderecoService.deletarEnderecoPorIdTrazerCliente(enderecoId);
+        
+        model.addAttribute("clienteId", clienteId);
+        model.addAttribute("especId", especId);
+        model.addAttribute("telefone", this.telefoneService.encontrarTelefonePorId(telefoneId));
+
+        return "clientes/telefones/atualizar";
+    }
+
+    @PostMapping(value = "/clientes/{clienteId}/{especId}/telefones/{telefoneId}/atualizar")
+    public String atualizarClienteTelefone(
+        @PathVariable Long clienteId, 
+        @PathVariable Long especId,
+        @PathVariable Long telefoneId,
+        @ModelAttribute Telefone novaTelefone,
+        Model model
+        ){
+        Telefone telefone = this.telefoneService.atualizarTelefone(telefoneId, novaTelefone);
+        Cliente cliente = telefone.getCliente();
+
+        if(cliente.getTipoCliente().equals(TipoCliente.PF)){
+            return "redirect:/clientes/pessoa-fisica/" + especId;
+        }
+        if(cliente.getTipoCliente().equals(TipoCliente.PJ)){
+            return "redirect:/clientes/pessoa-juridica/" + especId;
+        }
+        return "redirect:/clientes";
+    }
+
+    @GetMapping(value = "/clientes/{clienteId}/{especId}/telefones/{telefoneId}/deletar")
+    public String deletarClienteTelefone(
+        @PathVariable Long clienteId, 
+        @PathVariable Long especId,
+        @PathVariable Long telefoneId,
+        @ModelAttribute Telefone telefone,
+        Model model
+        ){
+        Cliente cliente = this.telefoneService.deletarTelefonePorIdTrazerCliente(telefoneId);
         
         if(cliente.getTipoCliente().equals(TipoCliente.PF)){
             return "redirect:/clientes/pessoa-fisica/" + especId;
