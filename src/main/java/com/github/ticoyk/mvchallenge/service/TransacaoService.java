@@ -33,7 +33,14 @@ public class TransacaoService {
 
     public Transacao registrarTransacao(Long contaId, Transacao transacao){
         Conta contaAtual = this.contaRepository.findById(contaId).get();
-        this.creditarXPTO(contaAtual);
+        Double valor = this.creditarXPTO(contaAtual);
+        // Adicionando Taxa a o valor da transação
+        if( transacao.getTipo().equals(TipoTransacao.DESPESA)){
+            transacao.setValor(transacao.getValor() + valor);
+        } else {
+            transacao.setValor(transacao.getValor() - valor);
+        }
+        
         transacao.setIdentificador("");
         transacao.setConta(contaAtual);
         return this.transacaoRepository.save(transacao);
@@ -46,7 +53,7 @@ public class TransacaoService {
     //Até 10 movimentações o cliente irá pagar R$ 1,00 por movimentação; 
     //De 10 a 20 movimentações o cliente irá pagar R$ 0,75 por movimentação; 
     //Acima de 20 movimentações o cliente irá pagar R$ 0,50 por movimentação;
-    private void creditarXPTO(Conta conta){
+    private Double creditarXPTO(Conta conta){
         Integer numeroTransacoes = 
             this.transacaoRepository.findTransacaoCountByClienteAndDate(
                 conta.getCliente().getId(), 
@@ -65,10 +72,10 @@ public class TransacaoService {
             valor = Double.valueOf(0.50);
         }
         
-        this.transacaoRepository.saveAll(Arrays.asList(
-            new Transacao(TipoTransacao.DESPESA, valor, conta),
+        this.transacaoRepository.save(
             new Transacao(TipoTransacao.RECEITA, valor, contaXPTO, conta.getCliente().getId().toString())
-            ));
+            );
+        return valor;
     }
     
 }
