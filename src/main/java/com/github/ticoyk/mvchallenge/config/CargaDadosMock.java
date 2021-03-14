@@ -11,6 +11,7 @@ import com.github.ticoyk.mvchallenge.model.Endereco;
 import com.github.ticoyk.mvchallenge.model.PessoaFisica;
 import com.github.ticoyk.mvchallenge.model.PessoaJuridica;
 import com.github.ticoyk.mvchallenge.model.Telefone;
+import com.github.ticoyk.mvchallenge.service.ClienteService;
 import com.github.ticoyk.mvchallenge.service.PessoaFisicaService;
 import com.github.ticoyk.mvchallenge.service.PessoaJuridicaService;
 
@@ -22,13 +23,16 @@ public class CargaDadosMock {
     
     private PessoaFisicaService pessoaFisicaService;
     private PessoaJuridicaService pessoaJuridicaService;
-
+    private ClienteService clienteService;
+    
     public CargaDadosMock(
         PessoaFisicaService pessoaFisicaService,
-        PessoaJuridicaService pessoaJuridicaService
+        PessoaJuridicaService pessoaJuridicaService,
+        ClienteService clienteService
         ){
         this.pessoaFisicaService = pessoaFisicaService;
         this.pessoaJuridicaService = pessoaJuridicaService;
+        this.clienteService = clienteService;
     }
 
     @Value("${spring.profiles.active}")
@@ -36,9 +40,24 @@ public class CargaDadosMock {
 
     @PostConstruct
     public void init() {
+        Cliente xpto = this.clienteService.encontrarClientePorNome("XPTO");
+        if(xpto == null){
+            criarXPTO();
+        } 
         if(activeProfile.equals("dev")){
             criarClientes();
         }
+    }
+
+    private void criarXPTO(){
+        PessoaJuridica pj = this.pessoaJuridicaService.registrarOuAtualizarCliente(
+            new PessoaJuridica("12345678901234", new Cliente("XPTO", TipoCliente.PJ))
+            );
+        Cliente cliente = pj.getCliente();
+        Conta conta = new Conta("XPTO Bank", cliente);
+        cliente.setContas(Arrays.asList(conta));
+        pj.setCliente(cliente);
+        this.pessoaJuridicaService.registrarOuAtualizarCliente(pj);
     }
 
     private void criarClientes() {
