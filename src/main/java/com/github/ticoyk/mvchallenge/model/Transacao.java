@@ -42,6 +42,12 @@ public class Transacao {
     
     public Transacao(){}
 
+    public Transacao(TipoTransacao tipo, Double valor, Conta conta) {
+        this.tipo = tipo;
+        this.valor = valor;
+        this.conta = conta;
+    }
+    
     public Transacao(TipoTransacao tipo, Double valor, LocalDateTime dataCriacao, Conta conta) {
         this.tipo = tipo;
         this.valor = valor;
