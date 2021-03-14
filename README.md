@@ -38,10 +38,10 @@ de relatórios relacionado as Transações dos Clientes, isso em um prazo de 4 d
 e um Schema bem estruturado e definido.
 
 - REALIDADE: Devido ao curto prazo de 4 dias, a abordagem ao problema, foi de documentar e planejar de forma minimalista e muita "hands on",
-acredito que o sistema corresponda com as necessidades de forma que seja possível o sistema funcionar, porém alguns tópicos foram negli-
-genciados ou descartados, como tratamento de exceções no pacote WEB, testes e validações.
+acredito que o sistema corresponda com as necessidades de forma que seja possível o sistema funcionar, porém alguns tópicos foram negligenciados ou 
+descartados devido ao curto prazo.
 
-- CONSEQUÊNCIAS: Caso o "caminho feliz" não seja seguido, muito provavelmente a aplicações pode acabar dando throw de alguma exceção,
+- CONSEQUÊNCIAS: Caso o "caminho feliz" não seja seguido, muito provavelmente a aplicação pode acabar dando throw de alguma exceção e
 existem brechas que podem sofrer exploits
 
 ## 💡 Próximos Passos <a name = "idea"></a>
