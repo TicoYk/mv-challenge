@@ -1,6 +1,6 @@
 package com.github.ticoyk.mvchallenge.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,11 +33,15 @@ public class Transacao {
     private Double valor;
     
     @CreationTimestamp
-    private LocalDateTime dataCriacao;
+    private LocalDate dataCriacao;
+
+    // Atributo para Armazenar Conta que beneficiou XPTO
+    @Column(nullable=true)
+    private String identificador;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="conta_id", referencedColumnName="id", nullable = false)
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "cliente"})
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "cliente", "transacoes"})
     private Conta conta;
     
     public Transacao(){}
@@ -48,10 +52,17 @@ public class Transacao {
         this.conta = conta;
     }
     
-    public Transacao(TipoTransacao tipo, Double valor, LocalDateTime dataCriacao, Conta conta) {
+    public Transacao(TipoTransacao tipo, Double valor, LocalDate dataCriacao, Conta conta) {
         this.tipo = tipo;
         this.valor = valor;
         this.dataCriacao = dataCriacao;
+        this.conta = conta;
+    }
+
+    public Transacao(TipoTransacao tipo, Double valor, Conta conta, String identificador) {
+        this.tipo = tipo;
+        this.valor = valor;
+        this.identificador = identificador;
         this.conta = conta;
     }
 
@@ -79,11 +90,11 @@ public class Transacao {
         this.valor = valor;
     }
 
-    public LocalDateTime getDataCriacao() {
+    public LocalDate getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setCreatedDate(LocalDateTime dataCriacao) {
+    public void setCreatedDate(LocalDate dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 
@@ -93,6 +104,14 @@ public class Transacao {
 
     public void setConta(Conta conta) {
         this.conta = conta;
+    }
+
+    public String getIdentificador() {
+        return identificador;
+    }
+
+    public void setIdentificador(String identificador) {
+        this.identificador = identificador;
     }
 
 }
