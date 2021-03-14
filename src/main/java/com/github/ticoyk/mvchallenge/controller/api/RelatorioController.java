@@ -31,10 +31,25 @@ public class RelatorioController {
 
     @PostMapping("/xpto")
     public ResponseEntity buscarRelatorioXpto(@RequestBody MinhaData data){
-        XPTOReport report = xptoRelatorioService.gerarRelatorioXPTOEntreDatas(data.getLocalDateFrom(), data.getLocalDateTo());
-        return ResponseEntity.status(HttpStatus.CREATED).body(
-            report
-            );
+        try {
+            XPTOReport report = xptoRelatorioService.gerarRelatorioXPTOEntreDatas(data.getLocalDateFrom(), data.getLocalDateTo());
+            return ResponseEntity.status(HttpStatus.CREATED).body(report);
+        } catch ( Exception e ) {
+            ApiErro apiErro = new ApiErro("Parâmetros incorretos cheque \"from\" e \" to\" formato \"yyyy-MM-dd\"", e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(apiErro);
+        }
+    }
+
+    @PostMapping("/cliente")
+    public ResponseEntity buscarRelatorioTodosClientes(){
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED).body(
+                relatorioService.gerarRelatorioTodosClientes()
+                );
+        } catch ( Exception e ){
+            ApiErro apiErro = new ApiErro("Cliente não encontrado.", e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(apiErro);
+        }
     }
 
     @PostMapping("/cliente/{clienteId}")

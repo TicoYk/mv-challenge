@@ -1,12 +1,14 @@
 package com.github.ticoyk.mvchallenge.service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.github.ticoyk.mvchallenge.constants.TipoTransacao;
 import com.github.ticoyk.mvchallenge.model.Cliente;
 import com.github.ticoyk.mvchallenge.model.Transacao;
 import com.github.ticoyk.mvchallenge.model.report.ClienteReport;
+import com.github.ticoyk.mvchallenge.model.report.ClienteSaldoReport;
 import com.github.ticoyk.mvchallenge.repository.ClienteRepository;
 import com.github.ticoyk.mvchallenge.repository.TransacaoRepository;
 
@@ -24,6 +26,18 @@ public class RelatorioService {
     ){
         this.transacaoRepository = transacaoRepository;
         this.clienteRepository = clienteRepository;
+    }
+
+    public List<ClienteSaldoReport> gerarRelatorioTodosClientes(){
+        List<ClienteSaldoReport> saldos = new ArrayList<ClienteSaldoReport>();
+        this.clienteRepository.findAll().iterator().forEachRemaining( cliente -> {
+            ClienteSaldoReport report = new ClienteSaldoReport(cliente.getNome(), (double)0);
+            cliente.getContas().forEach( conta -> {
+                report.setSaldo(this.gerarSaldo(conta.getTransacoes()) + report.getSaldo());
+            });
+            saldos.add(report);
+        });
+        return saldos;
     }
 
     public ClienteReport gerarRelatorioCliente(Long clienteId){
@@ -78,7 +92,9 @@ public class RelatorioService {
     }
 
     private Double gerarSaldo(List<Transacao> transacoes){
-        return transacoes.stream().mapToDouble(Transacao::getValor).sum();
+        Double receita = this.gerarValorTotal(TipoTransacao.RECEITA, transacoes);
+        Double despesa = this.gerarValorTotal(TipoTransacao.DESPESA, transacoes);
+        return receita - despesa;
     }
 
     private List<Transacao> buscarTransacao(Cliente cliente){
