@@ -57,7 +57,7 @@ public class ContaControllerApi {
             );
         } catch ( Exception e ){
             ApiErro apiErro = new ApiErro("Parâmetros incorretos", e.getMessage());
-            return new ResponseEntity(apiErro, HttpStatus.BAD_REQUEST);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(apiErro);
         }
     }
 }
