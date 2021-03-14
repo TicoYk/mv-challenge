@@ -8,7 +8,6 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.github.ticoyk.mvchallenge.model.Endereco;
 
 @JsonSerialize
-
 public class ClienteReport {
 
     private LocalDate dataInicio;
