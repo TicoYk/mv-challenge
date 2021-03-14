@@ -1,6 +1,6 @@
 <h1 align="center">MV-CHALLENGE</h1>
 
-<p align="center">Criado no dia 11-03-2021 as 14 horas com prazo para dia 14-03-2021</p>
+<p align="center">Criado no dia 11-03-2021 as 14 horas com prazo para dia 17-03-2021</p>
 <p align="center">Projeto tem como objetivo completar o <a href="https://drive.google.com/drive/folders/1uNhhIcLIA7ly8FgMG4UZRcshwetLxcKo?usp=sharing">Desafio da MV</a>
 </br>
 
@@ -37,9 +37,8 @@ de relatórios relacionado as Transações dos Clientes, isso em um prazo de 4 d
 - IDEAL: O Ideal seria que o Sistema cumprisse todas as necessidades do desafio, junto com a implementação de testes, e uma documentação,
 e um Schema bem estruturado e definido.
 
-- REALIDADE: Devido ao curto prazo de 4 dias, a abordagem ao problema, foi de documentar e planejar de forma minimalista e muita "hands on",
-acredito que o sistema corresponda com as necessidades de forma que seja possível o sistema funcionar, porém alguns tópicos foram negligenciados ou 
-descartados devido ao curto prazo.
+- REALIDADE: Devido ao prazo de 7 dias, a abordagem ao problema, foi de documentar e planejar de forma minimalista e muita "hands on",
+acredito que o sistema corresponda com as necessidades de forma que seja possível o sistema funcionar.
 
 - CONSEQUÊNCIAS: Caso o "caminho feliz" não seja seguido, muito provavelmente a aplicação pode acabar dando throw de alguma exceção e
 existem brechas que podem sofrer exploits
