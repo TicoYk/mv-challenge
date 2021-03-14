@@ -1,6 +1,6 @@
 package com.github.ticoyk.mvchallenge.service;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
@@ -34,12 +34,13 @@ public class TransacaoService {
     public Transacao registrarTransacao(Long contaId, Transacao transacao){
         Conta contaAtual = this.contaRepository.findById(contaId).get();
         this.creditarXPTO(contaAtual);
+        transacao.setIdentificador("");
         transacao.setConta(contaAtual);
         return this.transacaoRepository.save(transacao);
     }
 
     public List<Transacao> encontrarTransacaoPorTempo(){
-        return this.transacaoRepository.findTransacaoWithDayDifferenceByDay(LocalDateTime.now(), 30);
+        return this.transacaoRepository.findTransacaoWithDayDifferenceByDay(LocalDate.now(), 30);
     }
 
     //Até 10 movimentações o cliente irá pagar R$ 1,00 por movimentação; 
@@ -49,7 +50,7 @@ public class TransacaoService {
         Integer numeroTransacoes = 
             this.transacaoRepository.findTransacaoCountByClienteAndDate(
                 conta.getCliente().getId(), 
-                LocalDateTime.now(), 
+                LocalDate.now(), 
                 30
                 );
         Cliente xpto = this.clienteRepository.findByNome("XPTO");
@@ -66,7 +67,7 @@ public class TransacaoService {
         
         this.transacaoRepository.saveAll(Arrays.asList(
             new Transacao(TipoTransacao.DESPESA, valor, conta),
-            new Transacao(TipoTransacao.RECEITA, valor, contaXPTO)
+            new Transacao(TipoTransacao.RECEITA, valor, contaXPTO, conta.getCliente().getId().toString())
             ));
     }
     
