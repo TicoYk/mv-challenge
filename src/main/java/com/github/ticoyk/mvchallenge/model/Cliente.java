@@ -24,7 +24,6 @@ public class Cliente {
     private Long id;
     
     @Column(nullable = false)
-	@Size(min=2, max=30)
     private String nome;
 
     @Column(nullable = false)

@@ -18,7 +18,6 @@ public class PessoaJuridica {
     private Long id;
 
     @Column(nullable = false)
-    @Size(min=14, max=14)
     private String cnpj;
 
     @OneToOne(optional = false, cascade = CascadeType.ALL)

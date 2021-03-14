@@ -18,7 +18,6 @@ public class PessoaFisica {
     private Long id;
 
     @Column(nullable = false)
-    @Size(min = 11, max = 11)
     private String cpf;
 
     @OneToOne(optional = false, cascade = CascadeType.ALL)
