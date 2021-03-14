@@ -19,5 +19,9 @@ public class ClienteService {
     public Cliente encontrarClientePorId(Long id){
         return this.clienteRepository.findById(id).get();
     }
+
+    public Cliente encontrarClientePorNome(String nome) {
+        return this.clienteRepository.findByNome(nome);
+    }
     
 }
