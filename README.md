@@ -70,7 +70,7 @@ end;
 *A criação de banco de dados, foi deixada como responsalidade da Spring Data JPA,
 apesar de ter sido criado um modelo inicial, a medida que se foi desenvolvendo, foi se 
 encontrando mais problemas na modelagem, dessa forma deixando para que o Domínio(Models/Entity) 
-se Criassem.
+criasse a estrutura do banco de dados.
 
 ## ✍️ Autor
 
