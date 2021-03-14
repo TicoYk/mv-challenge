@@ -1,7 +1,6 @@
 package com.github.ticoyk.mvchallenge.service;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.List;
 
 import com.github.ticoyk.mvchallenge.constants.TipoTransacao;
