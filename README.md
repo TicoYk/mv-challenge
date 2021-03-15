@@ -27,7 +27,7 @@ Obs: O diagrama de relacionamento inicial foi criado e se encontra nas Issues.
 <a href="https://drive.google.com/drive/u/0/folders/1uNhhIcLIA7ly8FgMG4UZRcshwetLxcKo"> DOCUMENTOS </a>
 
 <a href="https://www.getpostman.com/collections/19d0f155421e8eb35102"> POSTMAN </a>
-( Somente Relatórios estão por Requisição a outra Parte está em WEB MVC )
+( Somente Relatórios estão por Requisição a outra Parte está em WEB MVC rota /clientes )
 
 ## 🧐 Problema <a name = "problem_statement"></a>
 
