@@ -43,7 +43,7 @@ e um Schema bem estruturado e definido.
 acredito que o sistema corresponda com as necessidades de forma que seja possível o sistema funcionar.
 
 - CONSEQUÊNCIAS: Caso o "caminho feliz" não seja seguido, muito provavelmente a aplicação pode acabar dando throw de alguma exceção e
-existem brechas que podem sofrer exploits
+existem brechas que podem sofrer exploits.(Não delete o cliente PJ XPTO, por favor.)😆
 
 ## 💡 Próximos Passos <a name = "idea"></a>
 
