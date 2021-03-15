@@ -53,6 +53,7 @@ aplicação(back-end).
 
 ## 🤔 Como começar?  <a name = "getting_started"></a>
 
+Precisará ter os seguintes requisitos: 
 - Java 11
 
 - Maven
