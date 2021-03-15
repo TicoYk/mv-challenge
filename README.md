@@ -7,7 +7,7 @@
 Nesse desafio a tecnologia escolhida foi Spring Boot Versão <b>2.4.3</b> com ThymeLeaf para MVC e api em Rest exclusivamente para relatórios e Transações
 com <b>Maven</b> como gerenciador de dependências e builder e com banco de dados Oracle DB.
 
-Devido a escolha do Spring Boot, foi tentado seguir alguns padrões como DDD e a utilização de Injeção de Dependência via Construtor, 
+Devido a escolha do Spring Boot, foi tentado seguir alguns padrões como DDD e a utilização de Injeção de Dependência via Construtor 
 para evitar injeção via atributo(Considerado má prática), utilização de Serviços para trabalhar com a ORM, Controladores para a Camada de comunicação Cliente<->Servidor
 e Inversão de Controle com a Spring Context(Component Scan) e a utilização de anotações ao invés de configuração via XML.
 
@@ -45,8 +45,8 @@ existem brechas que podem sofrer exploits
 
 ## 💡 Próximos Passos <a name = "idea"></a>
 
-Os próximos passos, seriam o de criar caso de testes, para as transações e relatórios, dai então procurar uma solução onde fosse possível,
-migrar a responsabilidade de manter a conta e a empresa XPTO, de forma que o pagamento de tarifa, fosse realizado via chamado de api, pela 
+Os próximos passos seriam os de criar caso de testes para as transações e relatórios, procurar uma solução onde fosse possível
+migrar a responsabilidade de manter a conta e a empresa XPTO, de forma que o pagamento de tarifa fosse realizado via chamada de api, pela 
 aplicação(back-end).
 
 ## 🏁 Pré - Requisitos <a name = "getting_started"></a>
@@ -67,7 +67,7 @@ end;
 - E uma boa IDE ou Editor de Texto
 
 *A criação de banco de dados, foi deixada como responsalidade da Spring Data JPA,
-apesar de ter sido criado um modelo inicial, a medida que se foi desenvolvendo, foi se 
+apesar de ter sido criado um modelo inicial a medida que se foi desenvolvendo foi se 
 encontrando mais problemas na modelagem, dessa forma deixando para que o Domínio(Models/Entity) 
 criasse a estrutura do banco de dados.
 
