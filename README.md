@@ -7,7 +7,7 @@
 Nesse desafio a tecnologia escolhida foi Spring Boot Versão <b>2.4.3</b> com ThymeLeaf para MVC e api em Rest exclusivamente para relatórios e Transações
 com <b>Maven</b> como gerenciador de dependências e builder e com banco de dados Oracle DB.
 
-Devido a escolha do Spring Boot, foi tentado seguir alguns padrões como DDD e a utilização de Injeção de Dependência via Construtor 
+Devido a escolha do Spring Boot, o projeto seguiu alguns padrões como DDD e a utilização de Injeção de Dependência via Construtor 
 para evitar injeção via atributo(Considerado má prática), utilização de Serviços para trabalhar com a ORM, Controladores para a Camada de comunicação Cliente<->Servidor
 e Inversão de Controle com a Spring Context(Component Scan) e a utilização de anotações ao invés de configuração via XML.
 
