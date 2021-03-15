@@ -51,22 +51,28 @@ Os próximos passos seriam os de criar caso de testes para as transações e rel
 migrar a responsabilidade de manter a conta e a empresa XPTO, de forma que o pagamento de tarifa fosse realizado via chamada de api, pela 
 aplicação(back-end).
 
-## 🏁 Pré - Requisitos <a name = "getting_started"></a>
+## 🤔 Como começar?  <a name = "getting_started"></a>
 
 - Java 11
+
 - Maven
+
 - Oracle DB
+
 - Executar o SQL da função no DB
-Estritamente necessário!
+    Estritamente necessário!
 <pre>
-CREATE OR REPLACE FUNCTION subtrairData(minhaData in DATE, diferencaDia in number)
-return DATE
-AS
-begin
-    return minhaData - NUMTODSINTERVAL(diferencaDia, 'day');
-end;
+    CREATE OR REPLACE FUNCTION subtrairData(minhaData in DATE, diferencaDia in number)
+    return DATE
+    AS
+    begin
+        return minhaData - NUMTODSINTERVAL(diferencaDia, 'day');
+    end;
 </pre>
+
 - E uma boa IDE ou Editor de Texto
+
+- Clique no Link para os próximos passos-> <a href="https://github.com/TicoYk/mv-challenge/wiki/Getting-Started"> Getting Started </a>
 
 *A criação de banco de dados, foi deixada como responsalidade da Spring Data JPA,
 apesar de ter sido criado um modelo inicial a medida que se foi desenvolvendo foi se 
