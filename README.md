@@ -19,6 +19,7 @@ seriam mais fáceis ou até mais perfomáticos, caso tivessem tido uma outra abo
 A documentação do desenvolvimento se baseou na criação de issues, milestones e commits.
 
 Obs: O diagrama de relacionamento inicial foi criado e se encontra nas Issues.
+
 <a href="https://github.com/TicoYk/mv-challenge/wiki">WIKI</a>
 
 <a href="https://github.com/TicoYk/mv-challenge/issues?q=is%3Aopen+is%3Aissue">ISSUES ABERTAS</a>
