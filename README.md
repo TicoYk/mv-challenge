@@ -39,7 +39,7 @@ de relatórios relacionado as Transações dos Clientes, isso em um prazo de 4 d
 - IDEAL: O Ideal seria que o Sistema cumprisse todas as necessidades do desafio, junto com a implementação de testes, e uma documentação,
 e um Schema bem estruturado e definido.
 
-- REALIDADE: Devido ao prazo de 7 dias, a abordagem ao problema, foi de documentar e planejar de forma minimalista e muita "hands on",
+- REALIDADE: Devido ao prazo de 4 dias, a abordagem ao problema, foi de documentar e planejar de forma minimalista e muita "hands on",
 acredito que o sistema corresponda com as necessidades de forma que seja possível o sistema funcionar.
 
 - CONSEQUÊNCIAS: Caso o "caminho feliz" não seja seguido, muito provavelmente a aplicação pode acabar dando throw de alguma exceção e
