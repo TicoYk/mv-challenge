@@ -4,7 +4,7 @@
 <p align="center">Projeto tem como objetivo completar o <a href="https://drive.google.com/drive/folders/1uNhhIcLIA7ly8FgMG4UZRcshwetLxcKo?usp=sharing">Desafio da MV</a>
 </br>
 
-Nesse desafio a tecnologia escolhida foi Spring Boot Versão <b>2.4.3</b> com ThymeLeaf para MVC e api em Rest exclusivamente para relatórios e Transações
+Nesse desafio a tecnologia escolhida foi Spring Boot Versão <b>2.4.3</b> com ThymeLeaf para MVC e api em Rest exclusivamente para relatórios e Transações,
 com <b>Maven</b> como gerenciador de dependências e builder e com banco de dados Oracle DB.
 
 Devido a escolha do Spring Boot, o projeto seguiu alguns padrões como DDD e a utilização de Injeção de Dependência via Construtor 
