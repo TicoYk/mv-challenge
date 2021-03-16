@@ -44,7 +44,7 @@ public class CargaDadosMock {
         if(xpto == null){
             criarXPTO();
         } 
-        if(activeProfile.equals("dev")){
+        if(activeProfile.equals("dev") || activeProfile.equals("test")){
             criarClientes();
         }
     }

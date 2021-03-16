@@ -31,7 +31,7 @@ public class XPTORelatorioService {
                 clientes.add(cliente);
             }
         });
-        // Aberração mas funciona.
+        
         clientes.forEach( cliente -> {
             Movimentacao movimentacao = new Movimentacao(cliente.getNome());
             cliente.getContas().iterator().forEachRemaining( conta -> {
