@@ -31,7 +31,7 @@ Obs: O diagrama de relacionamento inicial foi criado e se encontra nas Issues.
 <a href="https://www.getpostman.com/collections/19d0f155421e8eb35102"> POSTMAN </a>
 ( Somente Relatórios estão por Requisição a outra Parte está em WEB MVC rota /clientes )
 
-<a href="https://github.com/TicoYk/mv-challenge/issues/3">Testes </a>
+<a href="https://github.com/TicoYk/mv-challenge/issues/3">TESTES </a>
 
 ## 🧐 Problema <a name = "problem_statement"></a>
 
